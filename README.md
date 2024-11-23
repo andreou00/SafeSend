@@ -115,6 +115,3 @@ The **Linea Network** is a fast, scalable blockchain that offers low transaction
 
 ---
 
-## License  
-
-This project is licensed under the MIT License.  
