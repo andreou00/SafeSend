@@ -13,7 +13,7 @@ function App() {
   const [learnMode, setLearnMode] = useState(false);
   const [transferType, setTransferType] = useState('Ethereum');  // Added state for Transfer Type
 
-  const lineaChainId = '0xE708'; // Linea Sepolia Network
+  const lineaChainId = '0xE708'; // Linea Network
 
   const connectWallet = async () => {
     if (window.ethereum) {
