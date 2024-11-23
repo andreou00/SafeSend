@@ -1,4 +1,3 @@
-//     Linea Hackathon 2024: Dev Cook-Off with Linea
 
 //     Updated Version: More secured contract and additional checks! 
 //      Also added transfers for the special Efrogs 🐸 NFTS, and $CROAK MemeToken
