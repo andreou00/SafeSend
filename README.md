@@ -6,6 +6,8 @@
 
 With an estimated $3.8 billion lost in crypto due to errors last year, SafeSend tackles a pressing issue while contributing to the **Linea Network ecosystem** with educational and practical tools for safer transactions.  
 
+Official X account: [SafeSendDapp on X](https://x.com/SafeSendDapp)
+
 ## Key Features  
 
 ### Learn Mode: Blockchain Education for All  
