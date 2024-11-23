@@ -103,7 +103,7 @@ SafeSend began as an idea during a Linea Network hackathon, which provided a pla
 
 ## Why Build on Linea?  
 
-The **Linea Network** offers a robust, scalable, and developer-friendly environment, perfectly aligned with SafeSend’s vision of improving blockchain usability. By integrating with Linea, SafeSend demonstrates the network’s potential to enhance blockchain adoption through innovative solutions.
+The **Linea Network** is a fast, scalable blockchain that offers low transaction fees, making it an ideal platform for user-friendly and cost-effective applications. SafeSend leverages Linea’s speed and efficiency to provide seamless crypto transactions while minimizing costs for users. By integrating with Linea, SafeSend showcases the network’s ability to drive blockchain adoption through innovative and practical solutions.
 
 ---
 
