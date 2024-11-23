@@ -65,9 +65,7 @@ SafeSend began as an idea during a Linea Network hackathon, which provided a pla
 
 ---
 
-## Demo Videos  
 
-- **Pitch Video**: [Watch Here](https://youtu.be/9coSaJplZ2U)  
 - **Demo Video**: [Watch Here](https://youtu.be/0U2ohesnzKA)  
 
 ---
