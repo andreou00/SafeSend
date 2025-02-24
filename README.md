@@ -1,4 +1,3 @@
-
 # SafeSend DApp  
 ![logo](https://github.com/user-attachments/assets/64477577-6012-4d24-b0eb-8093350024b5)
 
@@ -22,7 +21,15 @@ SafeSend simplifies the transfer of:
 - **Ether** with send and claim-back functionalities.  
 - **eFrogs NFTs** and **$CROAK tokens** with the same secure transfer features.  
 
-The user-friendly interface ensures confidence for beginners and advanced users alike, combining usability with robust security.
+### Multi-Chain Support  
+SafeSend now supports both the **Linea Network** and **EduChain**.  
+- **Linea Network:** Enjoy fast, cost-effective transactions with low fees.  
+- **EduChain:** Tailored for educational initiatives and projects, EduChain provides an additional option for users seeking blockchain solutions that integrate with academic and learning ecosystems.
+
+### Micro Grants Program  
+In addition to robust transaction features, SafeSend proudly introduces its **Micro Grants Program**.  
+- **Empowering Innovation:** Designed to support promising blockchain projects and educational initiatives with small-scale funding.  
+- **Driving Adoption:** This program aims to foster growth and innovation within the Web3 space by providing seed grants to emerging ideas.
 
 ---
 
@@ -53,7 +60,7 @@ SafeSend leverages the best tools in the Web3 ecosystem:
 
 ## Live Demo  
 
-Experience SafeSend: [SafeSend DApp](https://safesendlinea.netlify.app/)  
+Experience SafeSend: [SafeSend DApp](https://safesenddapp.netlify.app/)  
 
 ---
 
@@ -64,7 +71,6 @@ SafeSend began as an idea during a Linea Network hackathon, which provided a pla
 - **HackQuest.io** for their continuous support of blockchain projects.  
 
 ---
-
 
 - **Demo Video**: [Watch Here](https://youtu.be/0U2ohesnzKA)  
 
@@ -101,9 +107,11 @@ SafeSend began as an idea during a Linea Network hackathon, which provided a pla
 
 ---
 
-## Why Build on Linea?  
+## Why Build on Linea and EduChain?  
 
-The **Linea Network** is a fast, scalable blockchain that offers low transaction fees, making it an ideal platform for user-friendly and cost-effective applications. SafeSend leverages Linea’s speed and efficiency to provide seamless crypto transactions while minimizing costs for users. By integrating with Linea, SafeSend showcases the network’s ability to drive blockchain adoption through innovative and practical solutions.
+The **Linea Network** is a fast, scalable blockchain that offers low transaction fees, making it an ideal platform for user-friendly and cost-effective applications. SafeSend leverages Linea’s speed and efficiency to provide seamless crypto transactions while minimizing costs for users.
+
+Now, with the integration of **EduChain**, SafeSend expands its horizons to include a blockchain dedicated to educational projects and initiatives. This dual-network approach allows users to choose the most suitable environment for their transactions, whether for everyday transfers or for projects linked to academic and educational innovation.
 
 ---
 
@@ -112,6 +120,3 @@ The **Linea Network** is a fast, scalable blockchain that offers low transaction
 **Konstantinos Andreou**  
 - LinkedIn: [Konstantinos Andreou](https://www.linkedin.com/in/andreou00/)  
 - Telegram: [@andreou00](https://t.me/andreou00)  
-
----
-
