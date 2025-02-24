@@ -1,19 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
 import './App.css';
-import { contractABI, contractAddress } from './contractABIs';
+import { contractABI as safeSendABI, contractAddress as safeSendAddress } from './contractABIs';
+import { contractABI as eduChainABI, contractAddress as eduChainAddress } from './contractABI';
 
 function App() {
   const [account, setAccount] = useState('');
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [learnMode, setLearnMode] = useState(false);
-  const [transferType, setTransferType] = useState('Ethereum');  // Added state for Transfer Type
+  const [network, setNetwork] = useState('SafeSend'); // Default to SafeSend
+  const [transferType, setTransferType] = useState('Ethereum');
 
-  const lineaChainId = '0xE708'; // Linea Network
+  const networks = {
+    SafeSend: {
+      chainId: '0xE708', // Linea Network
+      rpcUrl: 'https://linea-mainnet.infura.io/v3/',
+      explorerUrl: 'https://lineascan.build',
+      contractABI: safeSendABI,
+      contractAddress: safeSendAddress,
+      currency: 'ETH',
+      transferOptions: ['Ethereum', 'CROAK', 'eFrogs NFT'],
+    },
+    EduChain: {
+      chainId: '0xA045C', // EduChain Sepolia
+      rpcUrl: 'https://open-campus-codex-sepolia.drpc.org',
+      explorerUrl: 'https://opencampus-codex.blockscout.com',
+      contractABI: eduChainABI,
+      contractAddress: eduChainAddress,
+      currency: 'EDU',
+      transferOptions: ['Edu'],
+    },
+  };
+
+  useEffect(() => {
+    if (network === 'EduChain') {
+      setTransferType('Edu');
+    } else {
+      setTransferType('Ethereum'); // Default back to Ethereum when switching to Linea
+    }
+  }, [network]);
 
   const connectWallet = async () => {
     if (window.ethereum) {
@@ -22,7 +51,10 @@ function App() {
         const web3Instance = new Web3(window.ethereum);
         setWeb3(web3Instance);
         await checkNetwork(web3Instance);
-        const contractInstance = new web3Instance.eth.Contract(contractABI, contractAddress);
+        const contractInstance = new web3Instance.eth.Contract(
+          networks[network].contractABI,
+          networks[network].contractAddress
+        );
         setContract(contractInstance);
         setAccount(accounts[0]);
       } catch (error) {
@@ -43,38 +75,39 @@ function App() {
 
   const checkNetwork = async (web3Instance) => {
     const chainId = await web3Instance.eth.getChainId();
-    if (chainId !== parseInt(lineaChainId, 16)) {
+    const selectedNetwork = networks[network];
+    if (chainId !== parseInt(selectedNetwork.chainId, 16)) {
       try {
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId: lineaChainId }],
+          params: [{ chainId: selectedNetwork.chainId }],
         });
-        alert('Network switched to Linea');
+        alert(`Network switched to ${network}`);
       } catch (switchError) {
         if (switchError.code === 4902) {
           try {
             await window.ethereum.request({
               method: 'wallet_addEthereumChain',
               params: [{
-                chainId: lineaChainId,
-                chainName: 'Linea Mainnet',
-                rpcUrls: ['https://linea-mainnet.infura.io/v3/'],
-                blockExplorerUrls: ['https://lineascan.build'],
+                chainId: selectedNetwork.chainId,
+                chainName: network,
+                rpcUrls: [selectedNetwork.rpcUrl],
+                blockExplorerUrls: [selectedNetwork.explorerUrl],
                 nativeCurrency: {
-                  name: 'Ethereum',
-                  symbol: 'ETH',
+                  name: selectedNetwork.currency,
+                  symbol: selectedNetwork.currency,
                   decimals: 18,
                 },
               }],
             });
-            alert('Network added and switched to Linea');
+            alert(`Network added and switched to ${network}`);
           } catch (addError) {
             console.error('Failed to add network', addError);
-            alert('Failed to add the Linea network. Please try manually adding it.');
+            alert(`Failed to add the ${network} network. Please try manually adding it.`);
           }
         } else {
           console.error('Failed to switch to the network', switchError);
-          alert('Failed to switch to the Linea network. Please switch manually.');
+          alert(`Failed to switch to the ${network} network. Please switch manually.`);
         }
       }
     }
@@ -111,21 +144,19 @@ function App() {
             <button className="connect-button" onClick={connectWallet}>Connect Wallet</button>
           )}
         </header>
-        
-        <div className="transfer-type-container">
-          <label className="transfer-type-label" htmlFor="transferType">Transfer Type:</label>
+
+        <div className="network-selection">
+          <label htmlFor="network">Select Network:</label>
           <select
-            id="transferType"
-            className="transfer-type-select"
-            value={transferType}
-            onChange={(e) => setTransferType(e.target.value)}
+            id="network"
+            className="network-select"
+            value={network}
+            onChange={(e) => setNetwork(e.target.value)}
           >
-            <option value="Ethereum">Ethereum</option>
-            <option value="CROAK">$CROAK</option>
-            <option value="eFrogs NFT">eFrogs NFT</option>
+            <option value="SafeSend">Linea</option>
+            <option value="EduChain">EduChain (Open Campus Codex)</option>
           </select>
         </div>
-
 
         <Routes>
           <Route 
@@ -136,10 +167,11 @@ function App() {
                 web3={web3} 
                 account={account} 
                 contract={contract} 
-                contractAddress={contractAddress} 
-                contractABI={contractABI}
+                contractAddress={networks[network].contractAddress} 
+                contractABI={networks[network].contractABI}
                 learnMode={learnMode} 
-                transferType={transferType}  // Pass transfer type to Home component
+                network={network}  
+                transferType={transferType} 
               />} 
           />
           <Route path="/about" element={<About />} />
